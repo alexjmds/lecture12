@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Lecture 12</title>
+</head>
+<body>
+	<script>
+		var arrPrice = [31.05, 93.99, 14.00, 45.55, 6.00, 104, 434, 3, 53, 84.84];
+		var discount = 15;
+		var newArrPrice = [];
+		var summPrice = 0;
+		function sortBasket (arrPrice, discount) {
+			function sortPrice (a, b) {
+				if (a > b) return -1;
+				if (a < b) return 1;
+			    };
+			arrPrice.sort(sortPrice);
+			for (var i=2; (arrPrice.length > 0); i+=3) {
+				newArrPrice = newArrPrice.concat(arrPrice.splice(arrPrice.length-2, arrPrice.length-1));
+				newArrPrice = newArrPrice.concat(arrPrice.splice(0,1));
+				if (!newArrPrice[i]) {break};
+				newArrPrice[i] = +((newArrPrice[i]-(newArrPrice[i]*15)/100)).toFixed(2);
+			  };
+			for (var i=0; i < newArrPrice.length; i++) {
+				summPrice += newArrPrice[i]; 
+		 		}
+			console.log(newArrPrice);
+			console.log(summPrice);
+			alert ("Новий список для купівлі товару з урахуванням " + discount +"% знижки на кожен третій: \n " +    newArrPrice.join('$ \n ') + "\n загальна сума до сплати: " + summPrice + "$")};
+		            sortBasket (arrPrice, discount);
+	</script>
+</body>
+</html>
